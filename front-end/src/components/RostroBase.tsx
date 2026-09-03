@@ -1,72 +1,71 @@
 import { motion } from "motion/react";
 
-type Piece = {
+type Position = {
+	top?: string;
+	left?: string;
+	right?: string;
+	bottom?: string;
+	zIndex?: number;
+};
+
+type PieceConfig = {
 	src: string;
 	alt: string;
 	width: string;
 	height: string;
-	style: React.CSSProperties;
-	delay: number;
+	position: Position;
+	delay?: number;
 };
 
-const PIECES: Piece[] = [
+const PIECES: PieceConfig[] = [
 	{
 		src: "/rostro-base/ojo%20izq/ojo-izq.png",
 		alt: "Ojo izquierdo",
-		width: "13.54vw",
-		height: "24.07vh",
-		style: {
-			position: "absolute",
-			top: "20.37vh",
-			left: "15.00vw",
-			zIndex: 1,
-		},
+		width: "136vw",
+		height: "86vh",
+		position: { top: "2vh", left: "-50vw", zIndex: 1 },
 		delay: 0.3,
 	},
-	{
+{
 		src: "/rostro-base/ojo-drecho/ojo-derecho.png",
 		alt: "Ojo derecho",
-		width: "13.54vw",
-		height: "24.07vh",
-		style: {
-			position: "absolute",
-			top: "20.37vh",
-			right: "15.00vw",
-			zIndex: 1,
-		},
+		width: "136vw",
+		height: "86vh",
+		position: { top: "2vh", right: "-50vw", zIndex: 1 },
 		delay: 0,
 	},
 	{
 		src: "/rostro-base/nariz/nariz.png",
 		alt: "Nariz",
-		width: "12.50vw",
-		height: "22.22vh",
-		style: {
-			position: "absolute",
-			top: "29.63vh",
-			left: "43.75vw",
-			zIndex: 2,
-		},
+		width: "12vw",
+		height: "20vh",
+		position: { top: "36vh", left: "44vw", zIndex: 2 },
 		delay: 0.15,
 	},
 	{
 		src: "/rostro-base/boca/boca.png",
 		alt: "Boca",
-		width: "27.50vw",
-		height: "4.17vh",
-		style: {
-			position: "absolute",
-			top: "52.78vh",
-			left: "36.25vw",
-			zIndex: 1,
-		},
+		width: "25vw",
+		height: "6vh",
+		position: { top: "68vh", left: "37.5vw", zIndex: 1 },
 		delay: 0.45,
 	},
 ];
 
 export default function RostroBase() {
 	return (
-		<div className="relative h-screen w-screen overflow-hidden bg-white">
+		<div
+			style={{
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
+				position: "relative",
+				width: "100vw",
+				height: "100vh",
+				backgroundColor: "#ffffff",
+				overflow: "hidden",
+			}}
+		>
 			{PIECES.map((p, i) => (
 				<motion.img
 					key={i}
@@ -76,15 +75,16 @@ export default function RostroBase() {
 					decoding="async"
 					initial={{ opacity: 0, scale: 0.85 }}
 					animate={{ opacity: 1, scale: 1 }}
-					transition={{
-						duration: 0.5,
-						ease: "easeOut",
-						delay: p.delay,
-					}}
+					transition={{ duration: 0.5, ease: "easeOut", delay: p.delay }}
 					style={{
-						...p.style,
+						position: "absolute",
+						top: p.position.top,
+						left: p.position.left,
+						right: p.position.right,
+						bottom: p.position.bottom,
 						width: p.width,
 						height: p.height,
+						zIndex: p.position.zIndex,
 						objectFit: "contain",
 						pointerEvents: "none",
 					}}
