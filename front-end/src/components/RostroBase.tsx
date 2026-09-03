@@ -3,81 +3,86 @@ import { motion } from "motion/react";
 type Piece = {
 	src: string;
 	alt: string;
-	width: number;
-	height: number;
-	x: number;
-	y: number;
-	delay?: number;
+	width: string;
+	height: string;
+	style: React.CSSProperties;
+	delay: number;
 };
 
 const PIECES: Piece[] = [
 	{
+		src: "/rostro-base/ojo%20izq/ojo-izq.png",
+		alt: "Ojo izquierdo",
+		width: "13.54vw",
+		height: "24.07vh",
+		style: {
+			position: "absolute",
+			top: "20.37vh",
+			left: "15.00vw",
+			zIndex: 1,
+		},
+		delay: 0.3,
+	},
+	{
 		src: "/rostro-base/ojo-drecho/ojo-derecho.png",
 		alt: "Ojo derecho",
-		width: 140,
-		height: 140,
-		x: 120,
-		y: 80,
+		width: "13.54vw",
+		height: "24.07vh",
+		style: {
+			position: "absolute",
+			top: "20.37vh",
+			right: "15.00vw",
+			zIndex: 1,
+		},
 		delay: 0,
 	},
 	{
 		src: "/rostro-base/nariz/nariz.png",
 		alt: "Nariz",
-		width: 120,
-		height: 120,
-		x: 240,
-		y: 180,
+		width: "12.50vw",
+		height: "22.22vh",
+		style: {
+			position: "absolute",
+			top: "29.63vh",
+			left: "43.75vw",
+			zIndex: 2,
+		},
 		delay: 0.15,
-	},
-	{
-		src: "/rostro-base/ojo%20izq/ojo-izq.png",
-		alt: "Ojo izquierdo",
-		width: 140,
-		height: 140,
-		x: 360,
-		y: 80,
-		delay: 0.3,
 	},
 	{
 		src: "/rostro-base/boca/boca.png",
 		alt: "Boca",
-		width: 220,
-		height: 140,
-		x: 190,
-		y: 340,
+		width: "27.50vw",
+		height: "4.17vh",
+		style: {
+			position: "absolute",
+			top: "52.78vh",
+			left: "36.25vw",
+			zIndex: 1,
+		},
 		delay: 0.45,
 	},
 ];
 
-const FACE_W = 600;
-const FACE_H = 540;
-
 export default function RostroBase() {
 	return (
-		<div
-			className="relative overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-black/5"
-			style={{ width: FACE_W, height: FACE_H }}
-		>
+		<div className="relative h-screen w-screen overflow-hidden bg-white">
 			{PIECES.map((p, i) => (
 				<motion.img
 					key={i}
 					src={p.src}
 					alt={p.alt}
-					width={p.width}
-					height={p.height}
 					loading="eager"
 					decoding="async"
-					initial={{ opacity: 0, scale: 0.85, x: p.x, y: p.y }}
-					animate={{ opacity: 1, scale: 1, x: p.x, y: p.y }}
+					initial={{ opacity: 0, scale: 0.85 }}
+					animate={{ opacity: 1, scale: 1 }}
 					transition={{
 						duration: 0.5,
 						ease: "easeOut",
-						delay: p.delay ?? i * 0.1,
+						delay: p.delay,
 					}}
 					style={{
-						position: "absolute",
-						left: 0,
-						top: 0,
+						...p.style,
 						width: p.width,
 						height: p.height,
 						objectFit: "contain",
