@@ -1,31 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import RostroBase from "../components/RostroBase";
 ---
 
 <Layout>
-	<div id="app" class="flex min-h-[100dvh] w-full items-center justify-center bg-white"></div>
-
-	<script>
-		import { createRoot } from "react-dom/client";
-		import { createElement } from "react";
-		import { motion } from "motion/react";
-
-		function VerticalLine() {
-			return createElement(motion.div, {
-				initial: { scaleY: 0 },
-				whileInView: { scaleY: 1 },
-				viewport: { once: true, amount: 0.01 },
-				transition: { duration: 0.8, ease: "easeOut" },
-				style: {
-					transformOrigin: "top",
-					width: 2,
-					height: 300,
-					backgroundColor: "#000",
-				},
-			});
-		}
-
-		const el = document.getElementById("app");
-		if (el) createRoot(el).render(createElement(VerticalLine));
-	</script>
+	<div id="app" class="flex min-h-[100dvh] w-full items-center justify-center bg-white">
+		<RostroBase client:load />
+	</div>
 </Layout>
