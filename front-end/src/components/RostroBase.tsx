@@ -17,9 +17,13 @@ type PieceConfig = {
 	delay?: number;
 };
 
+type RostroBaseProps = {
+	emocion?: string;
+};
+
 const PIECES: PieceConfig[] = [
-{
-		src: "/rostro-base/ojo%20izq/ojo-izq.png",
+	{
+		src: "/emociones/feliz/ojo-izquierdo/ojo-izquierdo.png",
 		alt: "Ojo izquierdo",
 		width: "136vw",
 		height: "86vh",
@@ -27,7 +31,7 @@ const PIECES: PieceConfig[] = [
 		delay: 0.3,
 	},
 	{
-		src: "/rostro-base/ojo-drecho/ojo-derecho.png",
+		src: "/emociones/feliz/ojo-derecho/ojo-derecho.png",
 		alt: "Ojo derecho",
 		width: "136vw",
 		height: "86vh",
@@ -35,7 +39,7 @@ const PIECES: PieceConfig[] = [
 		delay: 0,
 	},
 	{
-		src: "/rostro-base/nariz/nariz.png",
+		src: "/emociones/feliz/nariz/nariz.png",
 		alt: "Nariz",
 		width: "42vw",
 		height: "68vh",
@@ -43,7 +47,7 @@ const PIECES: PieceConfig[] = [
 		delay: 0.15,
 	},
 	{
-		src: "/rostro-base/boca/boca.png",
+		src: "/emociones/feliz/boca/boca.png",
 		alt: "Boca",
 		width: "140vw",
 		height: "50vh",
@@ -52,7 +56,12 @@ const PIECES: PieceConfig[] = [
 	},
 ];
 
-export default function RostroBase() {
+export default function RostroBase({ emocion = "feliz" }: RostroBaseProps) {
+	const pieces = PIECES.map((p) => ({
+		...p,
+		src: p.src.replace("/emociones/feliz/", `/emociones/${emocion}/`),
+	}));
+
 	return (
 		<div
 			style={{
@@ -66,7 +75,7 @@ export default function RostroBase() {
 				overflow: "hidden",
 			}}
 		>
-			{PIECES.map((p, i) => (
+			{pieces.map((p, i) => (
 				<motion.img
 					key={i}
 					src={p.src}
