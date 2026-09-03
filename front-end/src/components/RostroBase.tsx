@@ -18,7 +18,7 @@ type PieceConfig = {
 };
 
 const PIECES: PieceConfig[] = [
-	{
+{
 		src: "/rostro-base/ojo%20izq/ojo-izq.png",
 		alt: "Ojo izquierdo",
 		width: "136vw",
@@ -26,7 +26,7 @@ const PIECES: PieceConfig[] = [
 		position: { top: "2vh", left: "-50vw", zIndex: 1 },
 		delay: 0.3,
 	},
-{
+	{
 		src: "/rostro-base/ojo-drecho/ojo-derecho.png",
 		alt: "Ojo derecho",
 		width: "136vw",
@@ -37,17 +37,17 @@ const PIECES: PieceConfig[] = [
 	{
 		src: "/rostro-base/nariz/nariz.png",
 		alt: "Nariz",
-		width: "12vw",
-		height: "20vh",
-		position: { top: "36vh", left: "44vw", zIndex: 2 },
+		width: "42vw",
+		height: "68vh",
+		position: { top: "9vh", left: "29vw", zIndex: 2 },
 		delay: 0.15,
 	},
 	{
 		src: "/rostro-base/boca/boca.png",
 		alt: "Boca",
-		width: "25vw",
-		height: "6vh",
-		position: { top: "68vh", left: "37.5vw", zIndex: 1 },
+		width: "140vw",
+		height: "50vh",
+		position: { top: "60vh", left: "-20vw", zIndex: 1 },
 		delay: 0.45,
 	},
 ];
@@ -62,7 +62,7 @@ export default function RostroBase() {
 				position: "relative",
 				width: "100vw",
 				height: "100vh",
-				backgroundColor: "#ffffff",
+				backgroundColor: "#000000",
 				overflow: "hidden",
 			}}
 		>
